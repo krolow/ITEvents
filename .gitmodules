@@ -1,0 +1,6 @@
+[submodule "app/Plugin/Attach"]
+	path = app/Plugin/Attach
+	url = git://github.com/krolow/Attach
+[submodule "app/Plugin/Komplete"]
+	path = app/Plugin/Komplete
+	url = git://github.com/krolow/Komplete
