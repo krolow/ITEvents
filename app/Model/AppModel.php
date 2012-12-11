@@ -31,4 +31,30 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+    public $recursive = -1;
+
+    public $actsAs = array(
+        'Containable',
+    );
+
+    public function getLog() {
+        $logs = array();
+        $dbConfigs = ConnectionManager::sourceList();
+
+        foreach ($dbConfigs as $configName) {
+            $driver = null;
+            $db = ConnectionManager::getDataSource($configName);
+            $logs += $db->getLog();
+        }
+        if (isset($logs['log'])) {
+            $return = array();
+            foreach ($logs['log'] as $log) {
+                $return[] = $log['query'];
+            }
+        }
+
+        return $return;
+    }
+
 }
